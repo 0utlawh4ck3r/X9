@@ -1,0 +1,35 @@
+id: Reflection-Check
+
+info:
+    name: Reflection Check
+    author: 0utlawh4ck3r
+    severity: medium
+    description: Reflection Check For Xss
+    tags: xss,reflection
+    metadata:
+        max-request: 5
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers-condition: or
+    matchers:
+      - type: word
+        words:
+          - <b>0utlaw
+        part: body
+
+      - type: word
+        words:
+          - <b/0utlaw
+        part: body
+
+      - type: word
+        words:
+          - '"0utlaw""'
+        part: body
+
+      - type: word
+        words:
+          - "'0utlaw''"
+        part: body
